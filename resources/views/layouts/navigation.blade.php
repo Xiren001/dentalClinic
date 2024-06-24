@@ -15,6 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('appointment')" :active="request()->routeIs('appointment')">
+                        {{ __('Appointment') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('patients.index')" :active="request()->routeIs('patients.index')">
+                        {{ __('Patient') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
+                        {{ __('Employee') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -66,6 +75,15 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('appointment')" :active="request()->routeIs('appointment')">
+                {{ __('Appointment') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('patients.index')" :active="request()->routeIs('patients.index')">
+                {{ __('Patient') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
+                {{ __('Employee') }}
             </x-responsive-nav-link>
         </div>
 

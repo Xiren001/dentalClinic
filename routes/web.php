@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\EmployeeController;
 
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\AppointmentController;
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -22,13 +26,21 @@ Route::resource('patients', PatientController::class);
 Route::resource('employees', EmployeeController::class);
 
 
+
+
+Route::resource('doctors', DoctorController::class);
+Route::resource('schedules', ScheduleController::class);
+Route::get('appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
+Route::post('appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/appointment', function () {
-    return view('admins.appointment');
-})->middleware(['auth', 'verified'])->name('appointment');
 
 
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('index');
@@ -21,6 +22,8 @@ Route::get('/service', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+
 
 Route::resource('patients', PatientController::class);
 Route::resource('employees', EmployeeController::class);
@@ -36,15 +39,12 @@ Route::get('appointments', [AppointmentController::class, 'index'])->name('appoi
 
 
 
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
-
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 

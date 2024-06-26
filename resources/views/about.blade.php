@@ -8,7 +8,7 @@
     <div class="about-first-section-container">
         <h1 class="first-section-title">Set aside your concerns upon entering and embrace a more accurate and healthier smile.</h1>
         <p class="first-section-subtitle">We exclusively select top-tier materials available in the market, ensuring our products meet the highest standards. Our commitment is to offer our patients nothing but the best. Rest assured, you're in good hands with us. Therefore, feel free to book an appointment without any concerns.</p>
-        <a class="book-appointment-link" href="">BOOK AN APPOINTMENT</a>
+        <a  id="book-appointment"  class="book-appointment-link" href="{{ route('appointments.create') }}">BOOK AN APPOINTMENT</a>
     </div>
     <div class="about-second-section-container">
         <img class="about-teeth-image" src="{{ asset('img/AboutTeethDecor.png')}}" alt="">
@@ -39,9 +39,29 @@
         </div>
     </div>
 </div>
+
+<!-- Toast Container -->
+<div id="toast-container" class="toast-container" style="display:none;">
+    <div class="toast">
+        <p>You need to log in before booking an appointment.</p>
+    </div>
+</div>
 @endsection
 @section('css')
     <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+
+    <style>
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0A7F9C;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
 @endsection
 @section('js')
     <script>
@@ -62,5 +82,23 @@
             }
             lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
         });
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookAppointmentBtn = document.getElementById('book-appointment');
+            const isAuthenticated = {{ auth()->check() ? 'true' : 'false' }};
+            const toastContainer = document.getElementById('toast-container');
+
+            bookAppointmentBtn.addEventListener('click', function(event) {
+                if (!isAuthenticated) {
+                    event.preventDefault();
+                    toastContainer.style.display = 'block';
+                    setTimeout(() => {
+                        toastContainer.style.display = 'none';
+                    }, 3000);
+                }
+            });
+        });
+ 
     </script>
 @endsection

@@ -15,7 +15,7 @@
                 </div>
                 <div class="contact-item-container">
                     <img class="contact-icon" src="{{ asset('img/Pin_fill.svg')}}" alt="">
-                    <p class="contact-content">University of Mindano</p>
+                    <p class="contact-content">University of Mindanao</p>
                 </div>
                 <div class="contact-item-container">
                     <img class="contact-icon" src="{{ asset('img/Message_alt_fill.svg')}}" alt="">
@@ -39,4 +39,13 @@
 @endsection
 @section('css')
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
+
+    <style>
+        /* Responsive Styles */
+@media (max-width: 768px) {
+    iframe{
+        display: none;
+    }
+}
+    </style>
 @endsection

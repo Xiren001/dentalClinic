@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('gender');
           
             $table->integer('contact_number');
+            $table->string('service');
            
             $table->string('image');
             $table->timestamps();

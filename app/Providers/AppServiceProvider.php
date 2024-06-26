@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\View;
 
 use App\Models\Patient;
 use App\Models\Employee;
+use App\Models\Doctor;
+use App\Models\Appointment;
+use App\Models\Schedule;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
     $employeeCount = Employee::count(); // Assuming Business is another model
     $employeeMCount = Employee::where('gender', 'male')->count();
     $employeeFCount = Employee::where('gender', 'female')->count();
+
+    $scheduleCount = Schedule::count(); 
+    $appointmentCount = Appointment::count(); 
+    $doctorCount = Doctor::count(); 
    
     
     View::share([
@@ -39,8 +46,11 @@ class AppServiceProvider extends ServiceProvider
 
         'employeeCount' => $employeeCount,
         'employeeMCount' => $employeeMCount,
-        'employeeFCount' => $employeeFCount
+        'employeeFCount' => $employeeFCount,
         
+        'doctorCount' => $doctorCount,
+        'scheduleCount' => $scheduleCount,
+        'appointmentCount' => $appointmentCount
 
     ]);
 }

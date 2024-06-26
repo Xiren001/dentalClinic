@@ -82,4 +82,20 @@
         </div>
     </div>
 
+    <style>
+        .alert {
+        position: fixed;
+        top: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #68D391; /* Change this to your desired background color */
+        color: #FFF; /* Change this to your desired text color */
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 9999; /* Ensure it's on top of everything */
+    }
+    </style>
+
 </x-app-layout>

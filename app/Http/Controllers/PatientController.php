@@ -61,6 +61,7 @@ class PatientController extends Controller
   
     'age' => 'required|integer',
     'gender' => 'required',
+    'service' => 'required',
     
     'contact_number' => 'required',
   
@@ -112,6 +113,7 @@ class PatientController extends Controller
            
             'age' => 'required|integer',
             'gender' => 'required',
+            'service' => 'required',
             
             'contact_number' => 'required',
           

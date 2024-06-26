@@ -9,8 +9,10 @@ class DoctorController extends Controller
 {
     public function index()
     {
+
+        $doctorCount = Doctor::count(); // Count the total number of records
         $doctors = Doctor::with('schedules')->get();
-        return view('doctors.index', compact('doctors'));
+        return view('doctors.index', compact('doctors','doctorCount'));
     }
 
     public function create()
@@ -23,5 +25,12 @@ class DoctorController extends Controller
         $request->validate(['name' => 'required']);
         Doctor::create($request->all());
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $doctor = Doctor::findOrFail($id);
+        $doctor->delete();
+        return redirect()->route('doctors.index')->with('success', 'Doctor deleted successfully.');
     }
 }

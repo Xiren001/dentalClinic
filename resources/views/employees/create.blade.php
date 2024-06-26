@@ -16,21 +16,22 @@
                                 <form action="{{ route('employees.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
-                                    <div class="flex flex-col space-y-4">
+                                    <div class="flex flex-row space-y-4 gap-2">
 
-                                        <div class="m">
-                                            <label for="inputImage" class="form-label font-semibold"><strong>Image:</strong></label>
-                                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="inputImage" accept="image/*" onchange="getImagePreview3(event)">
+                                        <div class="m gap-2">
                                             @error('image')
                                             <div class="form-text text-danger">{{ $message }}</div>
                                             @enderror
-                                            <div id="preview3" class="img-area col-md-4 flex flex-col items-center justify-center border border-dashed border-gray-500 rounded mt-4 p-4">
+                                            <div id="preview3" class="mb-4 w-52 h-52 img-area col-md-4 flex flex-col items-center justify-center border border-dashed border-gray-500 rounded mt-4 p-4">
                                                 <i class='bx bxs-cloud-upload icon-UP'></i>
                                                 <h3 class="text-center">Upload Image</h3>
                                                 <p class="text-center">Image size - less than <span>2MB</span></p>
                                             </div>
+                                          
+                                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="inputImage" accept="image/*" onchange="getImagePreview3(event)">
+                                           
                                         </div>
-
+                                        <div class="flex flex-col space-y-4">
                                         <div class="flex flex-wrap -mx-3 mb-6">
 
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -64,6 +65,8 @@
                                                 <div class="form-text text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
+                                        </div>
+                                            <div class="flex flex-wrap -mx-3 mb-6">
 
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                 <label for="inputSuffix" class="block uppercase tracking-wide text-gray-700 dark:text-gray-300 text-xs font-bold mb-2"><strong>Suffix</strong></label>
@@ -78,9 +81,7 @@
                                                         <option value="none">none</option>
                                                         <!-- Add more options as needed -->
                                                     </select>
-                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7 10l5 5 5-5H7z"/></svg>
-                                                    </div>
+                                                  
                                                 </div>
                                                 @error('suffix')
                                                 <div class="form-text text-danger">{{ $message }}</div>
@@ -103,9 +104,7 @@
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
                                                     </select>
-                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7 10l5 5 5-5H7z"/></svg>
-                                                    </div>
+                                                  
                                                 </div>
                                                 @error('gender')
                                                 <div class="form-text text-danger">{{ $message }}</div>
@@ -121,12 +120,12 @@
                                             </div>
 
                                         </div>
-
+                                        </div>
                                     </div>
 
                                     <div class="card-footer flex justify-end gap-2">
-                                        <a class="btn btn-primary btn-sm mr-2" href="{{ route('employees.index') }}">Cancel</a>
-                                        <button type="submit" class="btn btn-success">Add</button>
+                                        <a class="custom-button" href="{{ route('employees.index') }}">Cancel</a>
+                                        <button type="submit" class="custom-button">Add</button>
                                     </div>
                                 </form>
 
@@ -149,5 +148,44 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .img-area{
+            height: 300px;
+            width: 300px;
+        }
+        .m{
+            height: 320px;
+            width: 300px;
+        }
+        .custom-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: #4f46e5; /* bg-indigo-600 */
+            border: none;
+            border-radius: 0.375rem; /* rounded-md */
+            font-weight: 600; /* font-semibold */
+            font-size: 0.75rem; /* text-xs */
+            color: #ffffff; /* text-black */
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-widest */
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .custom-button:hover {
+            background-color: #4338ca; /* hover:bg-indigo-500 */
+        }
+
+        .custom-button:focus {
+            outline: none;
+            border-color: #3730a3; /* focus:border-indigo-700 */
+            box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25); /* focus:ring-indigo-200 */
+        }
+
+        .custom-button:active {
+            background-color: #4f46e5; /* active:bg-indigo-600 */
+        }
+    </style>
 
 </x-app-layout>

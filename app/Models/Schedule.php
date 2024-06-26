@@ -19,4 +19,9 @@ class Schedule extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function isBooked()
+    {
+        return $this->appointments()->exists();
+    }
 }

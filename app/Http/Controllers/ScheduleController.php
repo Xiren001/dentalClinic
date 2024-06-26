@@ -10,8 +10,10 @@ class ScheduleController extends Controller
 {
     public function index()
     {
+
+        $scheduleCount = Schedule::count(); // Count the total number of records
         $schedules = Schedule::with('doctor')->get();
-        return view('schedules.index', compact('schedules'));
+        return view('schedules.index', compact('schedules','scheduleCount'));
     }
 
     public function create()
@@ -30,5 +32,13 @@ class ScheduleController extends Controller
 
         Schedule::create($request->all());
         return redirect()->route('schedules.index')->with('success', 'Schedule created successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $schedule = Schedule::findOrFail($id);
+        $schedule->delete();
+
+        return redirect()->route('schedules.index')->with('success', 'Schedule deleted successfully.');
     }
 }

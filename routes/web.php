@@ -29,6 +29,14 @@ Route::resource('patients', PatientController::class);
 Route::resource('employees', EmployeeController::class);
 
 
+Route::resource('appointments', AppointmentController::class);
+
+
+
+
+Route::get('/appointments/success', function () {
+    return view('appointments.success');
+})->name('appointments.success');
 
 
 Route::resource('doctors', DoctorController::class);

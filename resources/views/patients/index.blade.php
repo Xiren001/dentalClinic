@@ -39,6 +39,7 @@
                                     <th class="border p-2">Address</th>
                                     <th class="border p-2">Gender</th>
                                     <th class="border p-2">Contact No</th>
+                                    <th class="border p-2">Service</th>
                                     <th class="border p-2 text-center">Action</th>
                                 </tr>
                             </thead>
@@ -57,6 +58,7 @@
                                     <td class="p-2 text-center">{{ $patient->address }}</td>
                                     <td class="p-2 text-center">{{ $patient->gender }}</td>
                                     <td class="p-2 text-center">{{ $patient->contact_number }}</td>
+                                    <td class="p-2 text-center">{{ $patient->service }}</td>
                                     <td class="p-2 text-center flex justify-center space-x-2">
                                         <a href="{{ route('patients.show',$patient->id) }}" class="bg-blue-500 text-black py-1 px-2 rounded hover:bg-blue-700"><i class="fa-solid fa-list"></i></a>
                                         <a href="{{ route('patients.edit',$patient->id) }}" class="bg-yellow-500 text-black py-1 px-2 rounded hover:bg-yellow-700"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -81,5 +83,19 @@
             </div>
         </div>
     </div>
-
+<style>
+    .alert {
+        position: fixed;
+        top: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #68D391; /* Change this to your desired background color */
+        color: #FFF; /* Change this to your desired text color */
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 9999; /* Ensure it's on top of everything */
+    }
+</style>
 </x-app-layout>

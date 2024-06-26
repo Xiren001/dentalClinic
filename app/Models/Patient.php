@@ -16,7 +16,7 @@ class Patient extends Model
         'lastname',
         'address',
         'suffix',
-       
+        'service',
         'age',
         'gender',
        

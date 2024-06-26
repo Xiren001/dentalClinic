@@ -54,6 +54,10 @@
                                             <strong>Contact Number</strong>
                                             <p class="text-gray-600">{{ $patient->contact_number }}</p>
                                         </div>
+                                        <div class="mb-4">
+                                            <strong>Service</strong>
+                                            <p class="text-gray-600">{{ $patient->service }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

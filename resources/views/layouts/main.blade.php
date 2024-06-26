@@ -16,7 +16,7 @@
     <body>
         @include('layouts.background')
         @include('layouts.navbar')
-        <div class="wholepage-container">
+        <div class="wholepage-container" style="width:100%;">
             @yield('content')
         </div>
         @include('layouts.footer')

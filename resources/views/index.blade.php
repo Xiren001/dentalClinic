@@ -5,7 +5,7 @@
         <h1 class="intro-title">Where <span class="intro-title-highlight">Beautiful Smiles</span> Begin.</h1>
         <p class="intro-subtitle">Gentle, compassionate care | Advanced technology | Convenient scheduling.</p>
         <div class="intro-button-container">
-            <a class="book-appointment-container" href="{{route('appointments.create')}}">BOOK AN APPOINTMENT</a>
+            <a id="book-appointment" class="book-appointment-container" href="{{ route('appointments.create') }}">BOOK AN APPOINTMENT</a>
             <div class="learn-more-container">
                 <a class="learn-more-link" href="#about-section">Learn More</a>
                 <img src="{{ asset('img/Arrow-Down.svg') }}" alt="">
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="contact-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.5184566278162!2d125.59390037544762!3d7.065723492936844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32f96d65ac7d3493%3A0xa54471a513d5fc70!2sUniversity%20of%20Mindanao%20-%20Matina!5e0!3m2!1sen!2sph!4v1718739824820!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.5184566278162!2d125.59390037544762!3d7.065723492936844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32f96d65ac7d3493%3A0xa54471a513d5fc70!2sUniversity%20of%20Mindanao%20-%20Matina!5e0!3m2!1sen!2sph!4v1718739824820!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <div class="contact-section-container">
             <div class="contact-title-container">
                 <h1 class="contact-title">Reach Out to Us</h1>
@@ -71,7 +71,83 @@
         </div>
     </div>
 </div>
+
+<!-- Toast Container -->
+<div id="toast-container" class="toast-container" style="display:none;">
+    <div class="toast">
+        <p>You need to log in before booking an appointment.</p>
+    </div>
+</div>
+
 @endsection
+
 @section('css')
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <style>
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0A7F9C;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        /* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .intro-title {
+        font-size: 1.5em;
+    }
+
+    .intro-subtitle {
+        font-size: 1em;
+    }
+
+    .about-2-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-img {
+        width: 100%;
+    }
+
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-cards {
+        max-width: 90%;
+    }
+
+    .contact-container iframe {
+        width: 100%;
+        height: auto;
+    }
+}
+    </style>
+@endsection
+
+@section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookAppointmentBtn = document.getElementById('book-appointment');
+            const isAuthenticated = {{ auth()->check() ? 'true' : 'false' }};
+            const toastContainer = document.getElementById('toast-container');
+
+            bookAppointmentBtn.addEventListener('click', function(event) {
+                if (!isAuthenticated) {
+                    event.preventDefault();
+                    toastContainer.style.display = 'block';
+                    setTimeout(() => {
+                        toastContainer.style.display = 'none';
+                    }, 3000);
+                }
+            });
+        });
+    </script>
 @endsection
